@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="../three.js-master/build/three.min.js"></script>
+    <script src="src/loaders/MTLLoader.js"></script>
+    <script src="src/loaders/OBJLoader.js"></script>
+    <script src="../libs/OrbitControls.js"></script>
+    <script src="../libs/Pabhoz/Utilities.js"></script>
+    <script src="src/models/Sound.js"></script>
+    <script src="src/models/Control.js"></script>
+    <script src="src/models/CollidableBox.js"></script>
+    <script src="src/models/Player.js"></script>
+    <script src="src/models/powerupvelocidad.js"></script>
+    <script src="src/models/LoaderModels.js"></script>
+    <script src="src/models/Bomba.js"></script>
+    <script src="src/models/destructible.js"></script>
+    <script src="src/models/collidablexplo.js"></script>
+    <script src="src/models/powerupbomb.js"></script>
+    <script src="src/models/escogidos.js"></script>
+    <script src="../libs/Stats.js"></script>
+    <script src="../libs/THREEx.KeyboardState.js"></script>
+</head>
+
+<body>
+    <!--onload="webGLStart()"-->
+
+    <!-- GUI -->
+    <div id="options">
+        Salir
+    </div>
+    <!-- END GUI -->
+
+    <div id="home">
+
+        <div class="fondo">
+            <img src="assets/images/lavaback.jpg" style="width:100vw;height:100vh;">
+        </div>
+
+        <div class="title">
+            <img src="assets/images/logo.png" style="width:50vw;height:30vh;">
+        </div>
+
+        <div class="start-btn">
+            <img src="assets/images/play.png" onclick="btnStart()" style="width:20vw;height:45vh;">
+        </div>
+    </div>
+    <div id="settings">
+        <div class="player4selected">
+            <img src="assets/images/player4selected.png" style="width:20vw;height:30vh;">
+        </div>
+        <div class="player3selected">
+            <img src="assets/images/player3selected.png" style="width:20vw;height:30vh;">
+        </div>
+        <div class="player2selected">
+            <img src="assets/images/player2selected.png" style="width:20vw;height:30vh;">
+        </div>
+        <div class="player1selected">
+            <img src="assets/images/player1selected.png" style="width:20vw;height:30vh;">
+        </div>
+        <div class="player4">
+            <img src="assets/images/player4.png" style="width:20vw;height:30vh;">
+        </div>
+        <div class="player3">
+            <img src="assets/images/player3.png" style="width:20vw;height:30vh;">
+        </div>
+        <div class="player2">
+            <img src="assets/images/player2.png" style="width:20vw;height:30vh;">
+        </div>
+        <div class="player1">
+            <img src="assets/images/player1.png" style="width:20vw;height:30vh;">
+        </div>
+        <div class="back">
+            <img src="assets/images/backtohome.png" onclick="BackCode()" style="width:7vw;height:10vh;">
+        </div>
+        <div class="next">
+            <img src="assets/images/nexttosettings.png" onclick="NextCode()" style="width:7vw;height:10vh;">
+        </div>
+        <div class="okcontrols">
+            <img src="assets/images/okcharacter.png" onclick="ControlyJugador()" style="width:5vw;height:10vh;">
+        </div>
+        <div class="flechitaizq">
+            <img src="assets/images/flechitaizquierda.png" onclick="FlechaIzq()" style="width:5vw;height:8vh;">
+        </div>
+        <div class="flechitader">
+            <img src="assets/images/flechitaderecha.png" onclick="FlechaDer()" style="width:5vw;height:8vh;">
+        </div>
+        <div class="teclado1">
+            <img src="assets/images/teclado1.png" style="width:40vw;height:40vh;">
+        </div>
+        <div class="teclado2">
+            <img src="assets/images/teclado2.png" style="width:40vw;height:40vh;">
+        </div>
+        <div class="teclado3">
+            <img src="assets/images/teclado3.png" style="width:40vw;height:40vh;">
+        </div>
+        <div class="teclado4">
+            <img src="assets/images/teclado4.png" style="width:40vw;height:40vh;">
+        </div>
+        <div class="labelplayer1">
+            <img src="assets/images/1player.png" style="width:2.5vw;height:7vh;">
+        </div>
+        <div class="labelplayer2">
+            <img src="assets/images/2player.png" style="width:2.5vw;height:7vh;">
+        </div>
+        <div class="labelplayer3">
+            <img src="assets/images/3player.png" style="width:2.5vw;height:7vh;">
+        </div>
+        <div class="labelplayer4">
+            <img src="assets/images/4player.png" style="width:2.5vw;height:7vh;">
+        </div>
+        <div class="flechita1">
+            <img src="assets/images/flechita.png" onclick="FlechaArriba()" style="width:5vw;height:5vh;">
+
+        </div>
+        <div class="flechita2">
+            <img src="assets/images/flechita2.png" onclick="FlechaAbajo()" style="width:5vw;height:5vh;">
+        </div>
+        <div class="labelplayer">
+            <img src="assets/images/PLAYER.png" style="width:12vw;height:10vh;">
+
+        </div>
+        <div class="configtexto">
+            <img src="assets/images/labelcontrols.png" style="width:30vw;height:20vh;">
+        </div>
+        <div class="fondoconfiguraciones">
+            <img src="assets/images/config.jpg" style="width:100vw;height:100vh;">
+
+        </div>
+
+
+
+    </div>
+    <div id="character">
+        <div class="player4selected">
+            <img src="assets/images/player4selected.png" style="width:30vw;height:40vh;">
+        </div>
+        <div class="player3selected">
+            <img src="assets/images/player3selected.png" style="width:30vw;height:40vh;">
+        </div>
+        <div class="player2selected">
+            <img src="assets/images/player2selected.png" style="width:30vw;height:40vh;">
+        </div>
+        <div class="player1selected">
+            <img src="assets/images/player1selected.png" style="width:30vw;height:40vh;">
+        </div>
+        <div class="player4">
+            <img src="assets/images/player4.png" style="width:30vw;height:40vh;">
+        </div>
+        <div class="player3">
+            <img src="assets/images/player3.png" style="width:30vw;height:40vh;">
+        </div>
+        <div class="player2">
+            <img src="assets/images/player2.png" style="width:30vw;height:40vh;">
+        </div>
+        <div class="player1">
+            <img src="assets/images/player1.png" style="width:30vw;height:40vh;">
+        </div>
+        <div class="back">
+            <img src="assets/images/backtohome.png" onclick="BackCode()" style="width:7vw;height:10vh;">
+        </div>
+        <div class="next">
+            <img src="assets/images/nexttosettings.png" onclick="NextCode()" style="width:7vw;height:10vh;">
+        </div>
+        <div class="aceptarpersonaje">
+            <img src="assets/images/aceptarpersonaje.png" onclick="GuardaJugador()" style="width:20vw;height:20vh;">
+        </div>
+        <div class="backpersonaje">
+            <img src="assets/images/backpersonaje.png" onclick="BackPlayerCode()" style="width:12vw;height:20vh;">
+        </div>
+        <div class="nextpersonaje">
+            <img src="assets/images/nextpersonaje.png" onclick="NextPlayerCode()" style="width:12vw;height:20vh;">
+        </div>
+        <div class="labelselecciona">
+            <img src="assets/images/seleccionapersonaje.png" style="width:45vw;height:30vh;">
+        </div>
+
+        <div class="fondopersonajes">
+            <img src="assets/images/fondopersonajes.jpg" style="width:100vw;height:100vh;">
+        </div>
+
+    </div>
+    
+    <!-- <EMBED SRC="assets/sounds/inicio.mp3">
+        <EMBED SRC="assets/sounds/inicio.mp3" HIDDEN="true">
+            <EMBED SRC="assets/sounds/inicio.mp3" AUTOSTART="true"> -->
+               <!--  <audio src="assets/sounds/inicio.mp3" preload="none"></audio> -->
+                <audio id="music"autoplay src="assets/sounds/inicio.mp3"></audio>
+
+    <div id="results"></div>
+    <div id="app">
+        <canvas id="appCanvas" width="100%" height="100%"></canvas>
+        <div class="reloj" id="minutos">0</div>
+    <div class="reloj" id="segundos">0</div>
+    <div class="gameover">
+            <img src="assets/images/GAMEOVER.png" id="anuncio" style="width:50vw;height:40vh;">
+        </div>
+        <div class="ganador1">
+                <img src="assets/images/ganador1.png" id="ganador1" style="width:20vw;height:10vh;">
+            </div>
+            <div class="ganador2">
+                    <img src="assets/images/ganador2.png" id="ganador2" style="width:20vw;height:10vh;">
+            </div>
+            <div class="ganador3">
+                    <img src="assets/images/ganador3.png" id="ganador3" style="width:20vw;height:10vh;">
+            </div>
+            <div class="ganador4">
+                    <img src="assets/images/ganador4.png" id="ganador4" style="width:20vw;height:10vh;">
+            </div>
+            <div class="p1">
+                    <img src="assets/images/p1.png" id="p1" style="width:10vw;height:5vh;">
+                </div>
+                <div class="p2">
+                        <img src="assets/images/p2.png" id="p2" style="width:10vw;height:5vh;">
+                </div>
+                <div class="p3">
+                        <img src="assets/images/p3.png" id="p3" style="width:10vw;height:5vh;">
+                </div>
+                <div class="p4">
+                        <img src="assets/images/p4.png" id="p4" style="width:10vw;height:5vh;">
+                </div>
+    </div>
+    <script>
+        window.onload = () => {
+            let options = document.querySelector("#options");
+            options.onclick = () => {
+                showHideGame();
+            }
+
+        }
+        function gameStart() {
+            showHideGame();
+            webGLStart();
+
+
+        }
+
+        jugadoresdeshabilitados = [];
+        controldeshabilitado = [];
+        function ControlyJugador() {
+            StartSound = new Sound(["assets/sounds/start.wav"], scene);
+            StartSound.play(); 
+            var jugador = cambioJugador();
+            if (jugadoresdeshabilitados.length == 0) {
+                console.log("no habia nada en jugadores des, agregue" + jugador);
+                jugadoresdeshabilitados.push(jugador);
+                var jugadorescogidofinal = jugador;
+                console.log("entonces el jugador escogido es " + jugadorescogidofinal);
+            } else {
+                console.log("ya habia algo en jugadores des, recorro el arreglo");
+                for (var j = 0; j < jugadoresdeshabilitados.length; j++) {
+                    if (jugador != jugadoresdeshabilitados[j]) {
+                        console.log("jugador" + jugador + " no habia sido seleccionado entonces lo agrega");
+                        jugadoresdeshabilitados.push(jugador);
+                        jugadorescogidofinal = jugador;
+                        console.log("entonces el jugador escogido es " + jugadorescogidofinal);
+                        j = jugadoresdeshabilitados.length;
+                    }
+                }
+            }
+            if (jugadorescogidofinal == undefined) {
+                console.log("selecconó el mismo jugador");
+            } else {
+                console.log("jugador escogido de verdacita" + jugadorescogidofinal);
+            }
+            var control = cambioControles();
+            console.log("control que seleccioné " + control);
+
+            if (controldeshabilitado.length == 0) {
+                controldeshabilitado.push(control);
+                var controlescogido = control;
+            }
+            else {
+                //verificar si volvió a undir
+                for (var i = 0; i < controldeshabilitado.length; i++) {
+                    console.log("control es igual a " + control + " y control que ya agregó es igual a  " + controldeshabilitado[i]);
+
+                    if (control != controldeshabilitado[i]) {
+                        controldeshabilitado.push(control);
+                        controlescogido = control;
+                        i = controldeshabilitado.length;
+
+                        //console.log("control 100% escogido "+ controlescogido)
+                    }
+                    else {
+                        console.log("ese control ya esta escogido prro");
+                    }
+
+                }
+            }
+            //se lo mando a la función de app
+            if (controlescogido == undefined) {
+                console.log("uno de los dos jugadores no tiene control porque selecconó el mismo");
+
+            }
+            else {
+                console.log("control escogido de verdacita" + controlescogido);
+            }
+            if(controlescogido!=undefined && jugadorescogidofinal!=undefined){
+                VerificarJugadoryControl(jugadorescogidofinal,controlescogido);
+            }
+            
+            cambioJugador(10);
+            cambioControles("a");
+           
+        }
+
+        function btnStart() {
+            Next(0);
+            
+            StartSound = new Sound(["assets/sounds/start.wav"], scene);
+            StartSound.play(); 
+        }
+        function NextCode() {
+            StartSound = new Sound(["assets/sounds/start.wav"], scene);
+            StartSound.play(); 
+            Next(0);
+        }
+        function BackCode() {
+            StartSound = new Sound(["assets/sounds/start.wav"], scene);
+            StartSound.play(); 
+            Next(1);
+        }
+        var k = 0;
+
+        function Next(s) {
+            if (s == 8) {
+                k == 2;
+            }
+            if (s == 0) {
+                k++;
+            }
+            if (s == 1) {
+                k--;
+            }
+            if (k == 0) {
+                let character = document.querySelector("#character");
+                character.style.display = "none";
+                let settings = document.querySelector("#settings");
+                settings.style.display = "none";
+                let home = document.querySelector("#home");
+                if (home.style.display != "flex") {
+                    if (home.style.display == "") {
+                        home.style.display = "none";
+                    } else {
+                        home.style.display = "flex";
+                    }
+                }
+            } if (k == 1) {
+                selectCharacter();
+            } if (k == 2) {
+                IrConfiguraciones();
+            }
+            if (k == 3) {
+                let character = document.querySelector("#character");
+                character.style.display = "none";
+                let settings = document.querySelector("#settings");
+                settings.style.display = "none";
+                let home = document.querySelector("#home");
+                home.style.display = "none";
+                var music = document.getElementById("music");
+                music.pause();
+                GamePlaying = new Sound(["assets/sounds/soundtrack.mp3"],scene);
+                GamePlaying.play(); 
+                let minutos = document.getElementById("minutos");
+                minutos.style.visibility= "visible";
+                let segundos = document.getElementById("segundos");
+                segundos.style.visibility= "visible";
+                webGLStart();
+            }
+        }
+        function NextPlayerCode() {
+            NextPlayer(1);
+            StartSound = new Sound(["assets/sounds/start.wav"], scene);
+            StartSound.play(); 
+        }
+        function BackPlayerCode() {
+            StartSound = new Sound(["assets/sounds/start.wav"], scene);
+            StartSound.play(); 
+            NextPlayer(0);
+
+        }
+        var contador = 0;
+        jugadoreshabilitados = [];
+        jugado1act = false;
+        jugado2act = false;
+        jugado3act = false;
+        jugado4act = false;
+        function GuardaJugador() {
+            StartSound = new Sound(["assets/sounds/start.wav"], scene);
+            StartSound.play(); 
+            var jugadorescogido = NextPlayer();
+            console.log("escogi el jugador" + jugadorescogido);
+            jugadoreshabilitados.push(jugadorescogido);
+
+            if (jugadorescogido == 1) {
+                let player1 = document.querySelector("#character .player1");
+                player1.style.visibility = "hidden";
+                let player1selected = document.querySelector("#character .player1selected");
+                player1selected.style.visibility = "visible";
+                let p1 = document.getElementById("p1");
+                p1.style.visibility = "visible";
+                setTimeout(function () {
+                    let player1 = document.querySelector("#character .player1");
+                    player1.style.visibility = "hidden";
+                    let player1selected = document.querySelector("#character .player1selected");
+                    player1selected.style.visibility = "hidden";
+                    jugado1act = true;
+                    NextPlayer(1);
+
+                }, 1000);
+            }
+
+            if (jugadorescogido == 2) {
+                let player2 = document.querySelector("#character .player2");
+                player2.style.visibility = "hidden";
+                let player2selected = document.querySelector("#character .player2selected");
+                player2selected.style.visibility = "visible";
+                let p2 = document.getElementById("p2");
+                p2.style.visibility = "visible";
+                setTimeout(function () {
+                    let player2 = document.querySelector("#character .player2");
+                    player2.style.visibility = "hidden";
+                    let player2selected = document.querySelector("#character .player2selected");
+                    player2selected.style.visibility = "hidden";
+                    jugado2act = true;
+                    NextPlayer(1);
+
+                }, 1000);
+            }
+
+            if (jugadorescogido == 3) {
+                let player3 = document.querySelector("#character .player3");
+                player3.style.visibility = "hidden";
+                let player3selected = document.querySelector("#character .player3selected");
+                player3selected.style.visibility = "visible";
+                let p3 = document.getElementById("p3");
+                p3.style.visibility = "visible";
+                setTimeout(function () {
+                    let player3 = document.querySelector("#character .player3");
+                    player3.style.visibility = "hidden";
+                    let player3selected = document.querySelector("#character .player3selected");
+                    player3selected.style.visibility = "hidden";
+                    jugado3act = true;
+                    NextPlayer(1);
+
+                }, 1000);
+            }
+
+            if (jugadorescogido == 4) {
+                let player4 = document.querySelector("#character .player4");
+                player4.style.visibility = "hidden";
+                let player4selected = document.querySelector("#character .player4selected");
+                player4selected.style.visibility = "visible";
+                let p4 = document.getElementById("p4");
+                p4.style.visibility = "visible";
+                setTimeout(function () {
+                    let player4 = document.querySelector("#character .player4");
+                    player4.style.visibility = "hidden";
+                    let player4selected = document.querySelector("#character .player4selected");
+                    player4selected.style.visibility = "hidden";
+                    jugado4act = true;
+                    NextPlayer(1);
+
+                }, 1000);
+            }
+
+            cambioJugador(10);
+            cambioControles("a");
+        }
+
+        var p = 1;
+        function NextPlayer(n) {
+            var selectplayer = 0;
+            if (n == 1) {
+                p++;
+            }
+            if (n == 0) {
+                p--;
+            }
+            if (p > 4) {
+                p = 1;
+            }
+
+            if (p < 1) {
+                p = 4;
+            }
+
+            if (p == 1 && jugado1act == false) {
+                let player1 = document.querySelector("#character .player1");
+                player1.style.visibility = "visible";
+                let player2 = document.querySelector("#character .player2");
+                player2.style.visibility = "hidden";
+                let player3 = document.querySelector("#character .player3");
+                player3.style.visibility = "hidden";
+                let player4 = document.querySelector("#character .player4");
+                player4.style.visibility = "hidden";
+                selectplayer = 1;
+            }
+            if (p == 2 && jugado2act == false) {
+                let player1 = document.querySelector("#character .player1");
+                player1.style.visibility = "hidden";
+                let player2 = document.querySelector("#character .player2");
+                player2.style.visibility = "visible";
+                let player3 = document.querySelector("#character .player3");
+                player3.style.visibility = "hidden";
+                let player4 = document.querySelector("#character .player4");
+                player4.style.visibility = "hidden";
+                selectplayer = 2;
+            }
+            if (p == 3 && jugado3act == false) {
+                let player1 = document.querySelector("#character .player1");
+                player1.style.visibility = "hidden";
+                let player2 = document.querySelector("#character .player2");
+                player2.style.visibility = "hidden";
+                let player3 = document.querySelector("#character .player3");
+                player3.style.visibility = "visible";
+                let player4 = document.querySelector("#character .player4");
+                player4.style.visibility = "hidden";
+                selectplayer = 3;
+            }
+            if (p == 4 && jugado4act == false) {
+                let player1 = document.querySelector("#character .player1");
+                player1.style.visibility = "hidden";
+                let player2 = document.querySelector("#character .player2");
+                player2.style.visibility = "hidden";
+                let player3 = document.querySelector("#character .player3");
+                player3.style.visibility = "hidden";
+                let player4 = document.querySelector("#character .player4");
+                player4.style.visibility = "visible";
+                selectplayer = 4;
+
+            }
+
+
+            return selectplayer;
+        }
+        function FlechaIzq() {
+            StartSound = new Sound(["assets/sounds/start.wav"], scene);
+            StartSound.play(); 
+            cambioControles("i");
+        }
+        function FlechaDer() {
+            StartSound = new Sound(["assets/sounds/start.wav"], scene);
+            StartSound.play(); 
+            cambioControles("d");
+        }
+        function FlechaArriba() {
+            StartSound = new Sound(["assets/sounds/start.wav"], scene);
+            StartSound.play(); 
+            cambioJugador(0);
+        }
+        function FlechaAbajo() {
+            StartSound = new Sound(["assets/sounds/start.wav"], scene);
+            StartSound.play(); 
+            cambioJugador(9);
+        }
+
+
+        var j = 1;
+        function cambioControles(contr) {
+            var control = 0;
+            if (contr == "d") {
+                j++;
+            }
+            if (contr == "i") {
+                j--;
+            }
+            if (j > jugadoreshabilitados.length) {
+                j = 1;
+            }
+
+            if (j < 1) {
+                j = jugadoreshabilitados.length;
+            }
+            for (var t = 0; t < jugadoreshabilitados.length; t++) {
+                for (var k = 0; k < controldeshabilitado.length; k++) {
+                    if (j == 1 && j == controldeshabilitado[k]) {
+                        let control1 = document.querySelector("#settings .teclado1");
+                        control1.style.visibility = "hidden";
+                        j = j + 1;
+                    }
+                    if (j == 2 && j == controldeshabilitado[k]) {
+                        let control2 = document.querySelector("#settings .teclado2");
+                        control2.style.visibility = "hidden";
+                        j = j + 1;
+                    }
+                    if (j == 3 && j == controldeshabilitado[k]) {
+                        let control3 = document.querySelector("#settings .teclado3");
+                        control3.style.visibility = "hidden";
+                        j = j + 1;
+                    }
+                    if (j == 4 && j == controldeshabilitado[k]) {
+                        let control4 = document.querySelector("#settings .teclado4");
+                        control4.style.visibility = "hidden";
+                        j = j + 1;
+                    }
+
+                }
+                if (j == 1 && jugadoreshabilitados[t] == 1) {
+                    let control1 = document.querySelector("#settings .teclado1");
+                    control1.style.visibility = "visible";
+                    let control2 = document.querySelector("#settings .teclado2");
+                    control2.style.visibility = "hidden";
+                    let control3 = document.querySelector("#settings .teclado3");
+                    control3.style.visibility = "hidden";
+                    let control4 = document.querySelector("#settings .teclado4");
+                    control4.style.visibility = "hidden";
+                    
+                    control = 1;
+                }
+                if (j == 2 && jugadoreshabilitados[t] == 2) {
+                    let control1 = document.querySelector("#settings .teclado1");
+                    control1.style.visibility = "hidden";
+                    let control2 = document.querySelector("#settings .teclado2");
+                    control2.style.visibility = "visible";
+                    let control3 = document.querySelector("#settings .teclado3");
+                    control3.style.visibility = "hidden";
+                    let control4 = document.querySelector("#settings .teclado4");
+                    control4.style.visibility = "hidden";
+                    
+                    control = 2;
+                }
+                if (j == 3 && jugadoreshabilitados[t] == 3) {
+                    let control1 = document.querySelector("#settings .teclado1");
+                    control1.style.visibility = "hidden";
+                    let control2 = document.querySelector("#settings .teclado2");
+                    control2.style.visibility = "hidden";
+                    let control3 = document.querySelector("#settings .teclado3");
+                    control3.style.visibility = "visible";
+                    let control4 = document.querySelector("#settings .teclado4");
+                    control4.style.visibility = "hidden";
+                    
+                    control = 3;
+                }
+                if (j == 4 && jugadoreshabilitados[t] == 4) {
+                    let control1 = document.querySelector("#settings .teclado1");
+                    control1.style.visibility = "hidden";
+                    let control2 = document.querySelector("#settings .teclado2");
+                    control2.style.visibility = "hidden";
+                    let control3 = document.querySelector("#settings .teclado3");
+                    control3.style.visibility = "hidden";
+                    let control4 = document.querySelector("#settings .teclado4");
+                    control4.style.visibility = "visible";
+                    
+                    control = 4;
+                }
+            }
+            return control;
+        }
+        var i = 1;
+
+        function cambioJugador(flecha) {
+            if (flecha == 0) {
+                i++;
+            }
+            if (flecha == 9) {
+                i--;
+            }
+            if (i > jugadoreshabilitados.length) {
+                i = 1;
+            }
+
+            if (i < 1) {
+                i = jugadoreshabilitados.length;
+            }
+
+            var jugador = 0;
+            for (var t = 0; t < jugadoreshabilitados.length; t++) {
+                console.log("en el arreglo:" + jugadoreshabilitados[t]);
+                console.log("i es igual a " + i);
+                for (var k = 0; k < jugadoresdeshabilitados.length; k++) {
+                    if (i == 1 && i == jugadoresdeshabilitados[k]) {
+
+                        let player1 = document.querySelector("#settings .player1");
+                        player1.style.visibility = "hidden";
+                        let player1selected = document.querySelector("#settings .player1selected");
+                        player1selected.style.visibility = "visible";
+
+                        setTimeout(function () {
+                            let labelplayer1 = document.querySelector("#settings .labelplayer1");
+                            labelplayer1.style.visibility = "hidden";
+                            let player1 = document.querySelector("#settings .player1");
+                            player1.style.visibility = "hidden";
+                            let player1selected = document.querySelector("#settings .player1selected");
+                            player1selected.style.visibility = "hidden";
+                            
+                        }, 1000);
+                       i++;
+                      console.log("despues del set i es igual a "+i);
+                       
+                    }
+                    if (i == 2 && i == jugadoresdeshabilitados[k]) {
+
+                        let player2 = document.querySelector("#settings .player2");
+                        player2.style.visibility = "hidden";
+                        let player2selected = document.querySelector("#settings .player2selected");
+                        player2selected.style.visibility = "visible";
+                        setTimeout(function () {
+                            let player2 = document.querySelector("#settings .player2");
+                            player2.style.visibility = "hidden";
+                            let player2selected = document.querySelector("#settings .player2selected");
+                            player2selected.style.visibility = "hidden";
+                            let labelplayer2 = document.querySelector("#settings .labelplayer2");
+                            labelplayer2.style.visibility = "hidden";
+                            i = i + 1;
+                        }, 1000);
+                       
+
+                    }
+                    if (i == 3 && i == jugadoresdeshabilitados[k]) {
+                        let player3 = document.querySelector("#settings .player3");
+                        player3.style.visibility = "hidden";
+                        let player3selected = document.querySelector("#settings .player3selected");
+                        player3selected.style.visibility = "visible";
+                        setTimeout(function () {
+                            let player3 = document.querySelector("#settings .player3");
+                            player3.style.visibility = "hidden";
+                            let player3selected = document.querySelector("#settings .player3selected");
+                            player3selected.style.visibility = "hidden";
+                            let labelplayer3 = document.querySelector("#settings .labelplayer3");
+                            labelplayer3.style.visibility = "hidden";
+                            i = i + 1;
+
+                        }, 1000);
+                       
+                    }
+                    if (i == 4 && i == jugadoresdeshabilitados[k]) {
+
+                        let player4 = document.querySelector("#settings .player4");
+                        player4.style.visibility = "hidden";
+                        let player4selected = document.querySelector("#settings .player4selected");
+                        player4selected.style.visibility = "visible";
+                        setTimeout(function () {
+                            let player4 = document.querySelector("#settings .player4");
+                            player4.style.visibility = "hidden";
+                            let player4selected = document.querySelector("#settings .player4selected");
+                            player4selected.style.visibility = "hidden";
+                            let labelplayer4 = document.querySelector("#settings .labelplayer4");
+                            labelplayer4.style.visibility = "hidden";
+                            i = i + 1;
+
+                        }, 1000);
+                       
+                    }
+
+                }
+
+
+                if (i == 1 && jugadoreshabilitados[t] == 1 && i != jugadoresdeshabilitados[t]) {
+                    let labelplayer1 = document.querySelector("#settings .labelplayer1");
+                    labelplayer1.style.visibility = "visible";
+                    let labelplayer2 = document.querySelector("#settings .labelplayer2");
+                    labelplayer2.style.visibility = "hidden";
+                    let labelplayer3 = document.querySelector("#settings .labelplayer3");
+                    labelplayer3.style.visibility = "hidden";
+                    let labelplayer4 = document.querySelector("#settings .labelplayer4");
+                    labelplayer4.style.visibility = "hidden";
+                    let player1 = document.querySelector("#settings .player1");
+                    player1.style.visibility = "visible";
+                    let player2 = document.querySelector("#settings .player2");
+                    player2.style.visibility = "hidden";
+                    let player3 = document.querySelector("#settings .player3");
+                    player3.style.visibility = "hidden";
+                    let player4 = document.querySelector("#settings .player4");
+                    player4.style.visibility = "hidden";
+                    jugador = 1;
+
+                }
+                if (i == 2 && jugadoreshabilitados[t] == 2) {
+                    let labelplayer1 = document.querySelector("#settings .labelplayer1");
+                    labelplayer1.style.visibility = "hidden";
+                    let labelplayer2 = document.querySelector("#settings .labelplayer2");
+                    labelplayer2.style.visibility = "visible";
+                    let labelplayer3 = document.querySelector("#settings .labelplayer3");
+                    labelplayer3.style.visibility = "hidden";
+                    let labelplayer4 = document.querySelector("#settings .labelplayer4");
+                    labelplayer4.style.visibility = "hidden";
+                    let player1 = document.querySelector("#settings .player1");
+                    player1.style.visibility = "hidden";
+                    let player2 = document.querySelector("#settings .player2");
+                    player2.style.visibility = "visible";
+                    let player3 = document.querySelector("#settings .player3");
+                    player3.style.visibility = "hidden";
+                    let player4 = document.querySelector("#settings .player4");
+                    player4.style.visibility = "hidden";
+                    jugador = 2;
+                }
+                if (i == 3 && jugadoreshabilitados[t] == 3) {
+                    let labelplayer1 = document.querySelector("#settings .labelplayer1");
+                    labelplayer1.style.visibility = "hidden";
+                    let labelplayer2 = document.querySelector("#settings .labelplayer2");
+                    labelplayer2.style.visibility = "hidden";
+                    let labelplayer3 = document.querySelector("#settings .labelplayer3");
+                    labelplayer3.style.visibility = "visible";
+                    let labelplayer4 = document.querySelector("#settings .labelplayer4");
+                    labelplayer4.style.visibility = "hidden";
+                    let player1 = document.querySelector("#settings .player1");
+                    player1.style.visibility = "hidden";
+                    let player2 = document.querySelector("#settings .player2");
+                    player2.style.visibility = "hidden";
+                    let player3 = document.querySelector("#settings .player3");
+                    player3.style.visibility = "visible";
+                    let player4 = document.querySelector("#settings .player4");
+                    player4.style.visibility = "hidden";
+                    jugador = 3;
+
+                }
+
+                if (i == 4 && jugadoreshabilitados[t] == 4) {
+                    let labelplayer1 = document.querySelector("#settings .labelplayer1");
+                    labelplayer1.style.visibility = "hidden";
+                    let labelplayer2 = document.querySelector("#settings .labelplayer2");
+                    labelplayer2.style.visibility = "hidden";
+                    let labelplayer3 = document.querySelector("#settings .labelplayer3");
+                    labelplayer3.style.visibility = "hidden";
+                    let labelplayer4 = document.querySelector("#settings .labelplayer4");
+                    labelplayer4.style.visibility = "visible";
+                    let player1 = document.querySelector("#settings .player1");
+                    player1.style.visibility = "hidden";
+                    let player2 = document.querySelector("#settings .player2");
+                    player2.style.visibility = "hidden";
+                    let player3 = document.querySelector("#settings .player3");
+                    player3.style.visibility = "hidden";
+                    let player4 = document.querySelector("#settings .player4");
+                    player4.style.visibility = "visible";
+                    jugador = 4;
+
+                }
+                //}
+            }
+            return jugador;
+        }
+
+
+        function IrConfiguraciones() {
+            let home = document.querySelector("#home");
+            home.style.display = "none";
+            let character = document.querySelector("#character");
+            character.style.display = "none";
+            let settings = document.querySelector("#settings");
+            settings.style.display = "block";
+
+        }
+        function selectCharacter() {
+            let settings = document.querySelector("#settings");
+            settings.style.display = "none";
+            let home = document.querySelector("#home");
+            home.style.display = "none";
+            let character = document.querySelector("#character");
+            character.style.display = "block";
+        }
+
+        function showHideGame() {
+            let settings = document.querySelector("#settings");
+            settings.style.display = "none";
+            let home = document.querySelector("#home");
+            home.style.display = "none";
+            let character = document.querySelector("#character");
+            character.style.display = "none";
+            if (home.style.display != "flex") {
+                if (home.style.display == "") {
+                    home.style.display = "none";
+                } else {
+                    home.style.display = "flex";
+                }
+            }
+            let app = document.querySelector("#app");
+            app.style.display = (app.style.display != "block") ? "block" : "none";
+            let options = document.querySelector("#options");
+            options.style.display = (options.style.display != "block") ? "block" : "none";
+        }
+        
+    </script>
+    <script src="src/app.js"></script>
+</body>
+
+</html>
+<!-- npm init -->

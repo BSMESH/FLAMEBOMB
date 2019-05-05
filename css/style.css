@@ -1,0 +1,501 @@
+@font-face {
+    font-family: BadMofo;
+    src: url(../assets/fonts/BadMofo.ttf);
+  }
+  @font-face {
+    font-family: Motorblock;
+    src: url(../assets/fonts/Motorblock.ttf);
+  }
+
+  @font-face {
+    font-family: Splatch;
+    src: url(../assets/fonts/Splatch.TTF);
+  }
+  
+*{
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    display: flex;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #000;
+    overflow-y: hidden;
+}
+
+#app, #home,#settings{
+    width: 100vw;
+    height: 100vh;
+    background: #2c3e50;
+}
+
+#home{
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}
+ #settings{
+     display:none;
+    flex-flow: column;
+    align-items: center;
+} 
+#character{
+    display:none;
+   flex-flow: column;
+   align-items: center;
+} 
+@keyframes TittleZoom {
+    from {width:30vw;}
+    to { width:50vw;}
+  }
+#home .title{
+    position:absolute;
+    display: block;
+    
+   
+    
+}
+#settings .configtexto{
+    margin-top: 7vh;
+    margin-left: 30vw;
+    position: absolute;
+        
+    
+}
+#settings .flechita1{
+    margin-top: 40vh;
+    margin-left: 10vh;
+    position: absolute;
+    cursor: pointer;
+        
+    
+}
+#settings .flechita2{
+    margin-top: 60vh;
+    margin-left: 10vh;
+        position: absolute;
+        cursor: pointer;    
+}
+#character .nextpersonaje{
+    margin-top: 40vh;
+    margin-left: 170vh;
+    position: absolute;
+    cursor: pointer;
+        
+    
+}
+#character .backpersonaje{
+    margin-top: 40vh;
+    margin-left: 10vh;
+        position: absolute;
+        cursor: pointer;    
+}
+#character .next{
+    margin-top: 7vh;
+    margin-left: 180vh;
+    position: absolute;
+    cursor: pointer;
+        
+    
+}
+#character .back{
+    margin-top: 7vh;
+    margin-left: 15vh;
+        position: absolute;
+        cursor: pointer;    
+}
+#character .player1{
+    visibility: visible;
+    margin-top: 30vh;
+    margin-left: 75vh;
+    position: absolute;
+
+}
+#character .player2{
+    visibility: hidden;
+    margin-top: 30vh;
+    margin-left: 75vh;
+    position: absolute;
+
+}
+#character .player3{
+    visibility: hidden;
+    margin-top: 30vh;
+    margin-left: 75vh;
+    position: absolute;
+
+}
+#character .player4{
+    visibility: hidden;
+    margin-top: 30vh;
+    margin-left: 75vh;
+    position: absolute;
+
+}
+#settings .player1{
+    visibility: visible;
+    margin-top: 40vh;
+    margin-left: 25vh;
+    position: absolute;
+
+}
+#settings .player2{
+    visibility: hidden;
+    margin-top: 40vh;
+    margin-left: 25vh;
+    position: absolute;
+
+}
+#settings .player3{
+    visibility: hidden;
+    margin-top: 40vh;
+    margin-left: 25vh;
+    position: absolute;
+
+}
+#settings .player4{
+    visibility: hidden;
+    margin-top: 40vh;
+    margin-left: 25vh;
+    position: absolute;
+
+}
+#character .player1selected{
+    visibility: hidden;
+    margin-top: 30vh;
+    margin-left: 75vh;
+    position: absolute;
+
+}
+#character .player2selected{
+    visibility: hidden;
+    margin-top: 30vh;
+    margin-left: 75vh;
+    position: absolute;
+
+}
+#character .player3selected{
+    visibility: hidden;
+    margin-top: 30vh;
+    margin-left: 75vh;
+    position: absolute;
+
+}
+#character .player4selected{
+    visibility: hidden;
+    margin-top: 30vh;
+    margin-left: 75vh;
+    position: absolute;
+
+}
+#settings .player1selected{
+    visibility: hidden;
+    margin-top: 40vh;
+    margin-left: 25vh;
+    position: absolute;
+
+}
+#settings .player2selected{
+    visibility: hidden;
+    margin-top: 40vh;
+    margin-left: 25vh;
+    position: absolute;
+}
+#settings .player3selected{
+    visibility: hidden;
+    margin-top: 40vh;
+    margin-left: 25vh;
+    position: absolute;
+
+}
+#settings .player4selected{
+    visibility: hidden;
+    margin-top: 40vh;
+    margin-left: 25vh;
+    position: absolute;
+
+}
+#settings .next{
+    margin-top: 7vh;
+    margin-left: 180vh;
+    position: absolute;
+    cursor: pointer;
+        
+    
+}
+#settings .back{
+    margin-top: 7vh;
+    margin-left: 15vh;
+        position: absolute;
+        cursor: pointer;    
+}
+#settings .flechitaizq{
+    margin-top: 75vh;
+    margin-left: 120vh;
+    position: absolute;
+    cursor: pointer;
+        
+    
+}
+#settings .flechitader{
+    margin-top: 75vh;
+    margin-left: 140vh;
+        position: absolute;
+        cursor: pointer;
+        
+    
+}
+
+#settings .teclado1{
+    margin-top: 30vh;
+    margin-left: 100vh;
+        position: absolute;
+}
+#settings .teclado2{
+    visibility: hidden;
+    margin-top: 30vh;
+    margin-left: 100vh;
+        position: absolute;
+}
+#settings .teclado3{
+    visibility: hidden;
+    margin-top: 30vh;
+    margin-left: 100vh;
+  position: absolute;
+}
+#settings .teclado4{
+    visibility: hidden;
+    margin-top: 30vh;
+    margin-left: 100vh;
+  position: absolute;
+}
+
+#settings .labelplayer1{
+    visibility: hidden;
+    margin-top: 50vh;
+    margin-left: 12vh;
+    position: absolute;
+
+    
+}
+#settings .labelplayer2{
+    visibility: hidden;
+    margin-top: 50vh;
+    margin-left: 12vh;
+    position: absolute;
+
+}
+#settings .labelplayer3{
+    visibility: hidden;
+    margin-top: 50vh;
+    margin-left: 12vh;
+    position: absolute;
+
+}
+#settings .labelplayer4{
+    visibility: hidden;
+    margin-top: 50vh;
+    margin-left: 12vh;
+    position: absolute;
+
+}
+
+#settings .labelplayer{
+    margin-top:30vh;
+    margin-left:30vh;
+    position: absolute;
+}
+#settings .labelcontrols{
+    margin-top:55vh;
+    margin-left:30vh;
+    position: absolute;
+}
+#character .labelselecciona{
+    margin-top:1vh;
+    margin-left:55vh;
+    position: absolute;
+}
+
+
+
+#home .suppaButton{
+    font-family: Splatch;
+    font-size: 3.5vw;
+    color: aliceblue;
+    padding: 1vw 1.5vw;
+    border: 1px solid goldenrod;
+    cursor: pointer;
+}
+#home .start-btn{
+    position:absolute;
+    display: block;
+    margin-top: 30vh;
+    margin-left: 3vh;
+    cursor: pointer;
+  
+}
+
+#settings .okcontrols{
+    position:absolute;
+    margin-top: 75vh;
+    margin-left:40vh;
+    cursor: pointer;
+}
+#character .aceptarpersonaje{
+    position:absolute;
+    margin-top: 75vh;
+    margin-left:80vh;
+    cursor: pointer;
+}
+
+#options{
+    position: absolute;
+    right: 2%;
+    top: 2%;
+    padding: 15px;
+    background: #000;
+    color: white;
+    border-radius: 5px;
+    width: 10vw;
+    cursor: pointer;
+    text-align: center;
+    border: 1px solid rgba(255,255,255,0.8);
+    display: none;
+}
+
+#options .options{
+    display: none;
+    margin-top: 10px;
+    border-top: 1px solid white;
+    padding-top: 10px;
+    font-size: 85%;
+}
+
+#options .options div{
+    padding: 2px;
+    transition: all 0.3s ease;
+    margin: 2px;
+}
+#options .options div:hover{
+    padding: 4px;
+    font-size: 95%;
+    background: #2c3e50;
+}
+
+.player{
+    position: absolute;
+    top: 20%;
+    margin: 5px;
+    background: rgba(0,0,0,0.8);
+    border: 1px snow;
+    color: aliceblue;
+    padding: 10px 15px;
+    border-radius: 5px;
+    width: 10vw;
+    display: flex;
+}
+
+.player .color{
+    flex: 4;
+    background: #2c3e50;
+}
+#home .fondo{
+    position: relative;
+}
+#settings.fondoconfiguraciones{
+    position: relative;
+}
+#settings.fondopersonajes{
+    position: relative;
+}
+.player .name{
+    flex: 6;
+    margin-left: 4px;
+}
+#app #minutos{
+    visibility: hidden;
+    position: absolute;
+    left: 45%;
+     top: 1%;
+     text-align: center;     
+     padding: 10px 10px 10px 10px ;
+     background-color: lightgray;
+     text-shadow: -1px -1px black, 1px 1px white;
+     color: gray;
+     -webkit-border-radius: 30px;
+     -moz-border-radius: 30px;
+     -o-border-radius: 30px;
+     border-radius: 30px;
+     box-shadow: 0 .2em gray;
+   
+ }
+ #app #segundos{
+     visibility: hidden;
+    position: absolute;
+    left: 50%;
+     top: 1%;
+     text-align: center;     
+     padding: 10px 10px 10px 10px ;
+     background-color: lightgray;
+     text-shadow: -1px -1px black, 1px 1px white;
+     color: gray;
+     -webkit-border-radius: 30px;
+     -moz-border-radius: 30px;
+     -o-border-radius: 30px;
+     border-radius: 30px;
+     box-shadow: 0 .2em gray;
+   
+ }
+ #app #anuncio{
+     margin-left:20wh;
+     visibility: hidden;
+    position:absolute;
+    
+    
+  
+}
+#app #ganador1{
+    margin-left:20wh;
+    visibility: hidden;
+   position:absolute;
+}
+#app #ganador2{
+    margin-left:20wh;
+    visibility: hidden;
+   position:absolute;
+}
+#app #ganador3{
+    margin-left:20wh;
+    visibility: hidden;
+   position:absolute;
+}
+#app #ganador4{
+    margin-left:20wh;
+    visibility: hidden;
+   position:absolute;
+}
+#app #p1{
+    margin-left:20wh;
+    margin-top:60px;
+    visibility: hidden;
+   position:absolute;
+}
+#app #p2{
+    margin-left:20wh;
+    margin-top:90px;
+    visibility: hidden;
+   position:absolute;
+}
+#app #p3{
+    margin-left:70wh;
+    margin-top:120px;
+    visibility: hidden;
+   position:absolute;
+}
+#app #p4{
+    margin-left:20wh;
+    margin-top:150px;
+    visibility: hidden;
+   position:absolute;
+}
